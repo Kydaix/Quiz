@@ -5,7 +5,6 @@ import { useSearchParams } from "next/navigation";
 
 export default function LoginPage() {
     const sp = useSearchParams();
-    // si tu viens d'une route protégée, middleware a pu mettre ?from=/...
     const callbackUrl = sp.get("from") ?? "/";
 
     return (
