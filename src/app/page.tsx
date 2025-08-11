@@ -1,20 +1,9 @@
 import Link from "next/link";
 import { getServerSession } from "next-auth";
 import { authOptions } from "./api/auth/[...nextauth]/route";
-import Image from "next/image";
 import { redirect } from "next/navigation";
-
-interface ImageRef {
-    url: string;
-    width: number;
-    height: number;
-}
-
-interface Artist {
-    id: string;
-    name: string;
-    images?: ImageRef[];
-}
+import ArtistGrid from "@/components/ArtistGrid";
+import type { Artist } from "@/types/spotify";
 
 // --- API helpers ---
 async function getTopArtists(accessToken: string): Promise<Artist[]> {
@@ -63,27 +52,7 @@ export default async function Home() {
                         </div>
                     </div>
                 ) : (
-                    <ul className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4" aria-label="Liste de vos artistes">
-                        {artists.map((artist) => {
-                            const img = artist.images?.[1]?.url || artist.images?.[0]?.url; // taille moyenne si dispo
-                            return (
-                                <li key={artist.id} className="group">
-                                    <div className="h-full rounded-2xl border border-neutral-200/80 dark:border-neutral-800/80 bg-white/80 dark:bg-neutral-900/50 p-3 transition hover:shadow-sm">
-                                        <div className="aspect-square w-full overflow-hidden rounded-xl bg-neutral-200/60 dark:bg-neutral-800/60">
-                                            {img ? (
-                                                <Image src={img} alt={artist.name} className="h-full w-full object-cover" width={64} height={64} />
-                                            ) : (
-                                                <div className="h-full w-full grid place-items-center text-xs text-neutral-500">Sans image</div>
-                                            )}
-                                        </div>
-                                        <div className="mt-3 space-y-1">
-                                            <p className="text-sm font-medium truncate" title={artist.name}>{artist.name}</p>
-                                        </div>
-                                    </div>
-                                </li>
-                            );
-                        })}
-                    </ul>
+                    <ArtistGrid artists={artists} token={accessToken} />
                 )}
             </main>
 

@@ -1,5 +1,10 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+## Features
+
+- Displays your top Spotify artists.
+- Clicking an artist plays a preview of one of their most listened tracks.
+
 ## Getting Started
 
 First, run the development server:
