@@ -1,7 +1,8 @@
 import Link from "next/link";
-import {getServerSession, Session} from "next-auth";
+import { getServerSession } from "next-auth";
 import { authOptions } from "./api/auth/[...nextauth]/route";
 import Image from "next/image";
+import { redirect } from "next/navigation";
 
 interface ImageRef {
     url: string;
@@ -28,8 +29,11 @@ async function getTopArtists(accessToken: string): Promise<Artist[]> {
 
 export default async function Home() {
     const session = await getServerSession(authOptions);
+    const accessToken = session?.accessToken;
+    if (!accessToken) {
+        redirect("/login");
+    }
 
-    const accessToken = (session as Session).accessToken as string;
     const [artists] = await Promise.all([
         getTopArtists(accessToken),
     ]);
