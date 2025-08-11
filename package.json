@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@radix-ui/react-popover": "^1.1.14",
+    "@radix-ui/themes": "^3.2.1",
     "next": "15.4.6",
     "next-auth": "^4.24.11",
     "react": "19.1.1",
