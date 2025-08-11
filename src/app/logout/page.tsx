@@ -2,6 +2,7 @@
 
 import { signOut } from "next-auth/react";
 import Link from "next/link";
+import { Button } from "@radix-ui/themes";
 
 export default function LogoutPage() {
     return (
@@ -12,14 +13,15 @@ export default function LogoutPage() {
                     Voulez-vous vraiment vous déconnecter ?
                 </p>
                 <div className="flex items-center justify-center gap-3">
-                    <button
+                    <Button
                         onClick={() => signOut({ callbackUrl: "/login" })}
-                        className="rounded-xl px-4 py-2 text-sm font-medium bg-neutral-100 text-neutral-900 hover:bg-white">
+                        className="rounded-xl px-4 py-2 text-sm font-medium bg-neutral-100 text-neutral-900 hover:bg-white"
+                    >
                         Oui, me déconnecter
-                    </button>
-                    <Link href="/" className="rounded-xl px-4 py-2 text-sm font-medium border border-neutral-700 hover:bg-neutral-900">
-                        Annuler
-                    </Link>
+                    </Button>
+                    <Button asChild className="rounded-xl px-4 py-2 text-sm font-medium border border-neutral-700 hover:bg-neutral-900">
+                        <Link href="/">Annuler</Link>
+                    </Button>
                 </div>
             </main>
         </div>

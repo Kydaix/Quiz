@@ -2,6 +2,7 @@
 
 import { signIn } from "next-auth/react";
 import { useSearchParams } from "next/navigation";
+import { Button } from "@radix-ui/themes";
 
 export default function LoginPage() {
     const sp = useSearchParams();
@@ -16,9 +17,12 @@ export default function LoginPage() {
                 </p>
 
                 {/* Bouton Spotify */}
-                <button onClick={() => signIn("spotify", { callbackUrl })} className="inline-flex items-center justify-center rounded-xl px-4 py-2 text-sm font-medium bg-emerald-500/90 hover:bg-emerald-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 transition">
+                <Button
+                    onClick={() => signIn("spotify", { callbackUrl })}
+                    className="inline-flex items-center justify-center rounded-xl px-4 py-2 text-sm font-medium bg-emerald-500/90 hover:bg-emerald-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 transition"
+                >
                     Se connecter avec Spotify
-                </button>
+                </Button>
 
                 {/* Gestion des erreurs NextAuth (optionnel) */}
                 {sp.get("error") && (
