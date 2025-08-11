@@ -19,7 +19,7 @@ export default function LogoutPage() {
                     >
                         Oui, me déconnecter
                     </Button>
-                    <Button asChild className="rounded-xl px-4 py-2 text-sm font-medium border border-neutral-700 hover:bg-neutral-900">
+                    <Button asChild className="cursor-pointer rounded-xl px-4 py-2 text-sm font-medium border border-neutral-700 hover:bg-neutral-900">
                         <Link href="/">Annuler</Link>
                     </Button>
                 </div>
